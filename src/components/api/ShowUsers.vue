@@ -28,10 +28,11 @@ const totalPages = async () => {
   return Math.ceil(usersData.length / perPage);
 };
 
-const paginatedUsers = () => {
+const paginatedUsers = async () => {
+  const usersData = await getUsers();
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
-  //return users.slice(start, end);
+  return usersData.slice(start, end);
 };
 
 const users = ref([]);
