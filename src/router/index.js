@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ShowUsers from "../components/api/ShowUsers.vue";
+import EditUser from "../components/api/EditUser.vue";
 
 const router = createRouter({
     history: createWebHistory(
@@ -9,11 +10,11 @@ const router = createRouter({
             name: "show",
             component: ShowUsers,
         },
-        /*   {
-              path: "/show",
-              name: "show",
-              component: ShowUsers,
-          }, */
+        {
+            path: "/edit",
+            name: "edit",
+            component: EditUser,
+        },
     ],
 });
 

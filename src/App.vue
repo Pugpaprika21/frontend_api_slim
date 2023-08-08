@@ -1,5 +1,6 @@
 <script setup>
-import ShowUsers from './components/api/ShowUsers.vue';
+import ShowUsers from "./components/api/ShowUsers.vue";
+import CreateUser from "./components/api/CreateUser.vue";
 </script>
 
 <template>
@@ -24,7 +25,7 @@ import ShowUsers from './components/api/ShowUsers.vue';
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <!-- <router-link to="/show" class="nav-link">add</router-link> -->
+              <router-link to="/edit" class="nav-link">edit</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
@@ -39,10 +40,7 @@ import ShowUsers from './components/api/ShowUsers.vue';
   </header>
 
   <div class="container-fluid" id="main-content">
-    <div class="row">
-      <div class="col-6 col-md-8"><ShowUsers /></div>
-      <div class="col-6 col-md-4">col-sm-4</div>
-    </div>
+    <RouterView />
   </div>
 </template>
 
