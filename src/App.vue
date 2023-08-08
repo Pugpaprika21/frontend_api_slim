@@ -1,5 +1,5 @@
 <script setup>
-import { RouterView } from "vue-router";
+import ShowUsers from './components/api/ShowUsers.vue';
 </script>
 
 <template>
@@ -24,7 +24,7 @@ import { RouterView } from "vue-router";
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/show" class="nav-link">add</router-link>
+              <!-- <router-link to="/show" class="nav-link">add</router-link> -->
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
@@ -38,7 +38,12 @@ import { RouterView } from "vue-router";
     </nav>
   </header>
 
-  <RouterView />
+  <div class="container-fluid" id="main-content">
+    <div class="row">
+      <div class="col-6 col-md-8"><ShowUsers /></div>
+      <div class="col-6 col-md-4">col-sm-4</div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
