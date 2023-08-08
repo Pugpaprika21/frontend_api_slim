@@ -6,16 +6,18 @@ import ShowUsersView from "../../views/ShowUsersView.vue";
 
 const route = useRoute();
 
-const host = "http://localhost:8080";
+const host = route.params.host;
 const token ="79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
 
 const perPage = 10;
 const currentPage = 1;
 const users = ref([]);
 
+const url = `${host}/api/users/${token}`;
+
 const getUsers = async () => {
   try {
-    const resp = await axios.get(`${host}/api/users/${token}`);
+    const resp = await axios.get(url);
     if (resp.data.rows > 0) {
       console.log(resp.data.data);
       return resp.data.data;
@@ -48,7 +50,7 @@ onMounted(async () => {
 <template>
   <div class="row">
     <div class="col-6 col-md-8">
-      <ShowUsersView :users="users" />
+      <ShowUsersView :users="users" /> <!-- http://localhost:8080/api/users -->
     </div>
   </div>
 </template>
