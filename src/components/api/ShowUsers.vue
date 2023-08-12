@@ -50,6 +50,7 @@ const submitForm = async () => {
   fd.append("email", userEmail.value);
   fd.append("rememberMe", rememberMe.value);
   fd.append("profileFile", profileFile.value);
+  fd.append("token", token);
 
   const url = `${host}/api/createUser`;
   const headers = {
