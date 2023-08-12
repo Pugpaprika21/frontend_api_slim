@@ -35,6 +35,7 @@ const changePage = (page) => {
           <td>user_phone</td>
           <td>user_status</td>
           <td>user_email</td>
+          <td>profile</td>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +46,14 @@ const changePage = (page) => {
           <td>{{ user.user_phone }}</td>
           <td>{{ user.user_status }}</td>
           <td>{{ user.user_email }}</td>
+          <td>
+            <img
+              v-if="user.user_profile"
+              :src="user.user_profile"
+              class="profile-image"
+              alt="User Profile"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -54,8 +63,15 @@ const changePage = (page) => {
         <li class="page-item" :class="{ disabled: currentPage === 1 }">
           <a class="page-link" @click="changePage(currentPage - 1)">Previous</a>
         </li>
-        <li v-for="pageNumber in totalPages" :key="pageNumber" class="page-item" :class="{ active: pageNumber === currentPage }">
-          <a class="page-link" @click="changePage(pageNumber)">{{ pageNumber }}</a>
+        <li
+          v-for="pageNumber in totalPages"
+          :key="pageNumber"
+          class="page-item"
+          :class="{ active: pageNumber === currentPage }"
+        >
+          <a class="page-link" @click="changePage(pageNumber)">{{
+            pageNumber
+          }}</a>
         </li>
         <li class="page-item" :class="{ disabled: currentPage === totalPages }">
           <a class="page-link" @click="changePage(currentPage + 1)">Next</a>
@@ -64,3 +80,12 @@ const changePage = (page) => {
     </nav>
   </div>
 </template>
+
+<style scoped>
+.profile-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%; /* กำหนดให้รูปเป็นวงกลม */
+}
+</style>

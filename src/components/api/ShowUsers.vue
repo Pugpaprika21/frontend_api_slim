@@ -21,6 +21,7 @@ const getUsers = async () => {
   try {
     const resp = await axios.get(url);
     if (resp.data.rows > 0) {
+      console.log(resp);
       return resp.data.data;
     }
     return [];
@@ -106,6 +107,7 @@ onMounted(() => {
               type="file"
               id="formFile"
               ref="profileFile"
+              accept="image/*"
               @change="handleFileChange"
             />
           </div>
