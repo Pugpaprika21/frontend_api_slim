@@ -45,7 +45,7 @@ const handleFileChange = (event) => {
   profileFile.value = event.target.files[0];
 };
 
-const submitForm = async () => {
+const submitFormCreateUser = async () => {
   const fd = new FormData();
   fd.append("username", username.value);
   fd.append("email", userEmail.value);
@@ -79,7 +79,7 @@ onMounted(() => {
         />
       </div>
       <div class="col-md-4">
-        <form @submit.prevent="submitForm" enctype="multipart/form-data">
+        <form @submit.prevent="submitFormCreateUser" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="user-name" class="form-label">Username</label>
             <input
