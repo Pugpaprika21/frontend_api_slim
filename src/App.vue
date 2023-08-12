@@ -1,6 +1,6 @@
 <script setup>
 import ShowUsers from "./components/api/ShowUsers.vue";
-import CreateUser from "./components/api/CreateUser.vue";
+//import CreateUser from "./components/api/CreateUser.vue";
 </script>
 
 <template>
