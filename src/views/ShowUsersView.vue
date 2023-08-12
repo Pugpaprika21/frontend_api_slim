@@ -23,7 +23,6 @@ const changePage = (page) => {
 };
 </script>
 
-
 <template>
   <div class="showUsers text-center">
     <table class="table table-bordered" id="showUsers">
