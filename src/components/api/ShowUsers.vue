@@ -20,7 +20,6 @@ const url = `${host}/api/users/${token}`;
 const getUsers = async () => {
   try {
     const resp = await axios.get(url);
-    // console.log(resp);
     if (resp.data.rows > 0) {
       return resp.data.data;
     }
@@ -86,7 +85,7 @@ onMounted(() => {
           enctype="multipart/form-data"
         >
           <div class="mb-3">
-            <label for="user-name" class="form-label">Username</label>
+            <label for="user-name" class="form-label">ชื่อผู้ใช้</label>
             <input
               type="text"
               class="form-control"
@@ -96,7 +95,7 @@ onMounted(() => {
             />
           </div>
           <div class="mb-3">
-            <label for="user-email" class="form-label">Email</label>
+            <label for="user-email" class="form-label">email</label>
             <input
               type="text"
               class="form-control"
@@ -106,7 +105,7 @@ onMounted(() => {
           </div>
 
           <div class="mb-3">
-            <label for="formFile" class="form-label">Profile</label>
+            <label for="formFile" class="form-label">profile</label>
             <input
               class="form-control"
               type="file"
@@ -128,7 +127,7 @@ onMounted(() => {
               >Check me out</label
             >
           </div>
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-sm btn-primary w-100 btn-create-user">บันทึก</button>
         </form>
       </div>
     </div>
@@ -136,6 +135,12 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+.btn-create-user {
+  border-color: aqua;
+  color: rgb(255, 255, 255);
+  background-color: rgb(43, 162, 183);
+}
 .showUsersTable {
   margin-top: 20px;
 }
