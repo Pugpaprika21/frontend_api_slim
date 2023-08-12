@@ -25,7 +25,7 @@ const changePage = (page) => {
 
 
 <template>
-  <div class="showUsers">
+  <div class="showUsers text-center">
     <table class="table table-bordered" id="showUsers">
       <thead>
         <tr>
