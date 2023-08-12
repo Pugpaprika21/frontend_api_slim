@@ -20,8 +20,8 @@ const url = `${host}/api/users/${token}`;
 const getUsers = async () => {
   try {
     const resp = await axios.get(url);
+    // console.log(resp);
     if (resp.data.rows > 0) {
-      console.log(resp);
       return resp.data.data;
     }
     return [];
@@ -59,11 +59,13 @@ const submitFormCreateUser = async () => {
   };
 
   const resp = await axios.post(url, fd, { headers });
-  console.log(resp);
+  if (resp.data.status) {
+    fetchUsers();
+  }
 };
 
 onMounted(() => {
-  fetchUsers(); 
+  fetchUsers();
 });
 </script>
 
@@ -79,7 +81,10 @@ onMounted(() => {
         />
       </div>
       <div class="col-md-4">
-        <form @submit.prevent="submitFormCreateUser" enctype="multipart/form-data">
+        <form
+          @submit.prevent="submitFormCreateUser"
+          enctype="multipart/form-data"
+        >
           <div class="mb-3">
             <label for="user-name" class="form-label">Username</label>
             <input
