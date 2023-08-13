@@ -1,11 +1,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import axios from "axios";
 import ShowUsersView from "../../views/ShowUsersView.vue";
 import FormCreateUserView from "../../views/FormCreateUserView.vue";
-
-const route = useRoute();
 
 const host = "http://localhost:8080";
 const token = "79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
@@ -34,45 +31,6 @@ const fetchUsers = async () => {
   totalPages.value = Math.ceil(users.value.length / perPage);
 };
 
-// const username = ref("");
-// const userEmail = ref("");
-// const rememberMe = ref(false);
-// const profileFile = ref(null);
-
-// const handleFileChange = (event) => {
-//   profileFile.value = event.target.files[0];
-// };
-
-// const submitFormCreateUser = async () => {
-//   const fd = new FormData();
-//   fd.append("username", username.value);
-//   fd.append("email", userEmail.value);
-//   fd.append("rememberMe", rememberMe.value);
-//   fd.append("profileFile", profileFile.value);
-//   fd.append("token", token);
-
-//   if (username.value == "") {
-//     username.value = "";
-//     return;
-//   }
-//   if (userEmail.value == "") {
-//     userEmail.value = "";
-//     return;
-//   }
-
-//   const url = `${host}/api/createUser`;
-//   const headers = {
-//     "Content-Type": "multipart/form-data",
-//   };
-
-//   const resp = await axios.post(url, fd, { headers });
-//   if (resp.data.status) {
-//     fetchUsers();
-//     username.value = "";
-//     userEmail.value = "";
-//     profileFile.value = null;
-//   }
-// };
 
 onMounted(() => {
   fetchUsers();
