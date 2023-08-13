@@ -1,13 +1,12 @@
 <script setup>
 import ShowUsers from "./components/api/ShowUsers.vue";
-//import CreateUser from "./components/api/CreateUser.vue";
 </script>
 
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-main">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Vue RestAPI</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -21,18 +20,6 @@ import ShowUsers from "./components/api/ShowUsers.vue";
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/edit" class="nav-link">edit</router-link>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -45,4 +32,12 @@ import ShowUsers from "./components/api/ShowUsers.vue";
 </template>
 
 <style scoped>
+.navbar-main {
+
+  background-color: rgb(86, 87, 158);
+}
+
+.navbar-brand {
+  color: aliceblue;
+}
 </style>
