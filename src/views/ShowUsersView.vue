@@ -1,11 +1,13 @@
 <script setup>
 import { ref, computed, defineProps } from "vue";
+import DeleteUser from "../components/api/DeleteUser.vue";
 
 const props = defineProps({
   users: Array,
   currentPage: Number,
   totalPages: Number,
   perPage: Number,
+  fetchUsers: Promise,
 });
 
 const currentPage = ref(props.currentPage);
@@ -54,7 +56,10 @@ const changePage = (page) => {
             <td>
               <button class="button btn-edit">เเก้ไข</button>
               &nbsp;
-              <button class="button btn-delete">ลบ</button>
+              <DeleteUser
+                :user-id="user.user_id"
+                :fetch-users="props.fetchUsers"
+              />
             </td>
           </tr>
         </tbody>
@@ -116,11 +121,6 @@ const changePage = (page) => {
 }
 
 .btn-edit:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-.btn-delete:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

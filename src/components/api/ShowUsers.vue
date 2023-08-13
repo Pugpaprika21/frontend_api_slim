@@ -9,7 +9,7 @@ const route = useRoute();
 const host = "http://localhost:8080";
 const token = "79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
 
-const perPage = 10;
+const perPage = 8;
 const currentPage = ref(1);
 const users = ref([]);
 const totalPages = ref(1);
@@ -86,6 +86,7 @@ onMounted(() => {
           :current-page="currentPage"
           :total-pages="totalPages"
           :per-page="perPage"
+          :fetch-users="fetchUsers()"
         />
       </div>
       <div class="col-md-4">
