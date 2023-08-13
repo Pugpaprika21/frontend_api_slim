@@ -98,7 +98,7 @@ const submitFormCreateUser = async () => {
         id="exampleCheck1"
         v-model="rememberMe"
       />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <label class="form-check-label" for="exampleCheck1">สถานะ</label>
     </div>
     <button type="submit" class="btn btn-sm btn-primary w-100 btn-create-user">
       บันทึก
