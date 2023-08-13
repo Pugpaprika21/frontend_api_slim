@@ -54,7 +54,7 @@ const changePage = (page) => {
               />
             </td>
             <td>
-              <button class="button btn-edit">เเก้ไข</button>
+              <router-link :to="`/edit/${user.user_id}`" class="button btn-edit">แก้ไข</router-link>
               &nbsp;
               <DeleteUser
                 :user-id="user.user_id"
@@ -91,7 +91,7 @@ const changePage = (page) => {
 
 <style scoped>
 .btn-edit {
-  background-color: #a8ac1b; /* Green */
+  background-color: #a8ac1b;
   border: none;
   color: white;
   padding: 5px 10px 5px 10px;
@@ -101,12 +101,12 @@ const changePage = (page) => {
   font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
 
 .btn-delete {
-  background-color: #9c0734; /* Green */
+  background-color: #9c0734;
   border: none;
   color: white;
   padding: 5px 10px 5px 10px;
@@ -116,7 +116,7 @@ const changePage = (page) => {
   font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
 
@@ -134,6 +134,6 @@ thead td {
   width: 50px;
   height: 50px;
   object-fit: cover;
-  border-radius: 50%; /* กำหนดให้รูปเป็นวงกลม */
+  border-radius: 50%;
 }
 </style>

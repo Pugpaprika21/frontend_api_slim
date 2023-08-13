@@ -7,20 +7,17 @@ const props = defineProps({
 });
 
 const host = "http://localhost:8080";
-const token =
-  "79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
+const token = "79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
 
 const username = ref("");
 const userEmail = ref("");
 const rememberMe = ref(false);
 const profileFileInput = ref(null);
-const profileFileName = ref("");
 const profileFile = ref(null);
 
 const handleFileChange = () => {
   const selectedFile = profileFileInput.value.files[0];
   if (selectedFile) {
-    profileFileName.value = selectedFile.name;
     profileFile.value = selectedFile;
     console.log(selectedFile);
   }
@@ -32,7 +29,6 @@ const submitFormCreateUser = async () => {
   fd.append("email", userEmail.value);
   fd.append("rememberMe", rememberMe.value);
   fd.append("profileFile", profileFile.value);
-  fd.append("profileFileName", profileFileName.value);
   fd.append("token", token);
 
   if (username.value == "") {
@@ -52,6 +48,10 @@ const submitFormCreateUser = async () => {
   const resp = await axios.post(url, fd, { headers });
   console.log(resp.data);
   if (resp.data.status) {
+    username.value = "";
+    userEmail.value = "";
+    rememberMe.value = null;
+    profileFile.value = null;
     await props.apiFetchUsers;
   }
 };

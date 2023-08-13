@@ -11,7 +11,7 @@ const router = createRouter({
             component: ShowUsers,
         },
         {
-            path: "/edit",
+            path: "/edit/:id",
             name: "edit",
             component: EditUser,
         },
