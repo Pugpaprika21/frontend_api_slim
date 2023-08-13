@@ -52,6 +52,15 @@ const submitFormCreateUser = async () => {
   fd.append("profileFile", profileFile.value);
   fd.append("token", token);
 
+  if (username.value == "") {
+    username.value = "";
+    return;
+  }
+  if (userEmail.value == "") {
+    userEmail.value = "";
+    return;
+  }
+
   const url = `${host}/api/createUser`;
   const headers = {
     "Content-Type": "multipart/form-data",
