@@ -10,13 +10,18 @@ const props = defineProps({
 const host = "http://localhost:8080";
 const token = "79f5b6d5e8c3280e5db1d5bda60c46232b2c858bf3dd060b0cc065a83f394b27";
 
-function deleteUser(id) {
-  console.log(id);
+async function deleteUser(id) {
+  const resp = await axios.delete(`${host}/api/deleteUser/${id}`, {
+    params: {
+      token: token
+    }
+  });
+
+  if (resp.data.status) {
+    props.fetchUsers;
+  }
 }
 
-onMounted(() => {
-    props.fetchUsers;
-});
 </script>
 
 <template>
