@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
+import { setValueFileInput } from "@/utils/helpers";
 
 const route = useRoute();
 const userId = route.params.id;
@@ -14,6 +15,8 @@ const userEmail = ref("");
 const userStatus = ref("");
 const userProfile = ref("");
 const userfullProfile = ref("");
+const userInputFile = ref(null);
+const rememberMe = ref(false);
 
 const editUser = async () => {
   try {
@@ -25,18 +28,49 @@ const editUser = async () => {
 
     if (resp.data.status) {
       const user = resp.data.data;
-
-      console.log(user);
-
       username.value = user.user_name;
       userEmail.value = user.user_email;
       userStatus.value = user.user_status;
       userProfile.value = user.user_profile;
       userfullProfile.value = user.user_image_path;
+      userInputFile.value.files = setValueFileInput(userProfile.value);
     }
   } catch (error) {
     console.log(error);
   }
+};
+
+const submitUpdateUser = async () => {
+  const fd = new FormData();
+  fd.append("user_name", username.value);
+  fd.append("user_email", userEmail.value);
+  fd.append("user_profile", userInputFile.value.files[0]);
+  fd.append("token", token);
+
+  const url = `${host}/api/updateUser/${userId}`;
+  const params = {
+    user: {
+      user_name: username.value,
+      user_email: userEmail.value,
+    },
+  };
+  const headers = {
+    "Content-Type": "multipart/form-data",
+  };
+
+  try {
+    const resp = await axios.put(url, fd, { params, headers });
+    console.log(resp.data);
+  } catch (error) {
+    console.error(error);
+  }
+
+  // console.log([
+  //   username.value,
+  //   userEmail.value,
+  //   rememberMe.value,
+  //   userInputFile.value.files[0],
+  // ]);
 };
 
 onMounted(() => {
@@ -48,7 +82,7 @@ onMounted(() => {
   <div class="editUser mt-4">
     <div class="row">
       <div class="col-md-4">
-        <form enctype="multipart/form-data">
+        <form @submit.prevent="submitUpdateUser" enctype="multipart/form-data">
           <img :src="userfullProfile" class="profile-image" alt="" srcset="" />
           <div class="mb-3">
             <label for="user-name" class="form-label">ชื่อผู้ใช้</label>
@@ -57,7 +91,7 @@ onMounted(() => {
               class="form-control"
               id="user-name"
               aria-describedby="emailHelp"
-              :value="username"
+              v-model="username"
             />
           </div>
           <div class="mb-3">
@@ -66,7 +100,7 @@ onMounted(() => {
               type="text"
               class="form-control"
               id="user-email"
-              :value="userEmail"
+              v-model="userEmail"
             />
           </div>
           <div class="mb-3">
@@ -76,6 +110,7 @@ onMounted(() => {
               type="file"
               id="formFile"
               accept="image/*"
+              ref="userInputFile"
             />
           </div>
           <div class="mb-3 form-check">
@@ -83,10 +118,9 @@ onMounted(() => {
               type="checkbox"
               class="form-check-input"
               id="exampleCheck1"
+              ref="rememberMe"
             />
-            <label class="form-check-label" for="exampleCheck1"
-              >สถานะ</label
-            >
+            <label class="form-check-label" for="exampleCheck1">สถานะ</label>
           </div>
           <button
             type="submit"
