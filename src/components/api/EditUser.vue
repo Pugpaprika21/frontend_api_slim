@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 import { setValueFileInput } from "@/utils/helpers";
 
 const route = useRoute();
+const router = useRouter();
+
 const userId = route.params.id;
 const host = "http://localhost:8080";
 const token =
@@ -42,35 +44,25 @@ const editUser = async () => {
 
 const submitUpdateUser = async () => {
   const fd = new FormData();
-  fd.append("user_name", username.value);
-  fd.append("user_email", userEmail.value);
-  fd.append("user_profile", userInputFile.value.files[0]);
+  fd.append("userId", userId);
+  fd.append("username", username.value);
+  fd.append("userEmail", userEmail.value);
+  fd.append("userProfile", userInputFile.value.files[0]);
   fd.append("token", token);
 
-  const url = `${host}/api/updateUser/${userId}`;
-  const params = {
-    user: {
-      user_name: username.value,
-      user_email: userEmail.value,
-    },
-  };
+  const url = `${host}/api/updateUser`;
   const headers = {
     "Content-Type": "multipart/form-data",
   };
 
   try {
-    const resp = await axios.put(url, fd, { params, headers });
-    console.log(resp.data);
+    const resp = await axios.post(url, fd, { headers });
+    if (resp.data.status) {
+      router.push("/");
+    }
   } catch (error) {
     console.error(error);
   }
-
-  // console.log([
-  //   username.value,
-  //   userEmail.value,
-  //   rememberMe.value,
-  //   userInputFile.value.files[0],
-  // ]);
 };
 
 onMounted(() => {
